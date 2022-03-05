@@ -17,7 +17,20 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      username: "",
+      password: "",
+      nickname: "",
+    };
+  },
+  methods: {
+    submitForm() {
+      console.log("hello");
+    },
+  },
+};
 </script>
 
 <style></style>
