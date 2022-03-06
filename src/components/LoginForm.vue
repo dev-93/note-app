@@ -26,15 +26,19 @@ export default {
   },
   methods: {
     async submitForm() {
-      const userData = {
-        username: this.username,
-        password: this.password,
-      };
-      const { data } = await loginUser(userData);
-      console.log(data);
-      this.logMessage = `${data.user.nickname} 님 환영합니다`;
-
-      this.initForm();
+      try {
+        const userData = {
+          username: this.username,
+          password: this.password,
+        };
+        const { data } = await loginUser(userData);
+        console.log(data.user.username);
+        this.logMessage = `${data.user.username} 님 환영합니다`;
+        this.initForm();
+      } catch (error) {
+        console.log(error.response.data);
+        this.logMessage = error.response.data;
+      }
     },
     initForm() {
       this.username = "";
