@@ -8,7 +8,8 @@
       <label for="password">pw:</label>
       <input id="password" type="text" v-model="password" />
     </div>
-    <button>로그인</button>
+    <button type="submit">로그인</button>
+    <p>{{ logMessage }}</p>
   </form>
 </template>
 
@@ -31,6 +32,8 @@ export default {
       };
       const { data } = await loginUser(userData);
       console.log(data);
+      this.logMessage = `${data.user.nickname} 님 환영합니다`;
+
       this.initForm();
     },
     initForm() {
