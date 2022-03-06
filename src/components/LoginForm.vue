@@ -12,6 +12,33 @@
   </form>
 </template>
 
-<script></script>
+<script>
+import { loginUser } from "@/api/index";
+
+export default {
+  data() {
+    return {
+      username: "",
+      password: "",
+      logMessage: "",
+    };
+  },
+  methods: {
+    async submitForm() {
+      const userData = {
+        username: this.username,
+        password: this.password,
+      };
+      const { data } = await loginUser(userData);
+      console.log(data);
+      this.initForm();
+    },
+    initForm() {
+      this.username = "";
+      this.password = "";
+    },
+  },
+};
+</script>
 
 <style></style>
