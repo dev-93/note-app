@@ -8,7 +8,6 @@
       <label for="password">pw:</label>
       <input id="password" type="text" v-model="password" />
     </div>
-    <button type="submit">로그인</button>
     <button :disabled="!isUsernameValid || !password" type="submit">
       로그인
     </button>
