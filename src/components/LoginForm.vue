@@ -34,10 +34,8 @@ import { validateEmail } from "@/utils/validation";
 export default {
   data() {
     return {
-      // form values
       username: "",
       password: "",
-      // log
       logMessage: "",
     };
   },
