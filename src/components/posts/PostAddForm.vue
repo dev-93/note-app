@@ -14,7 +14,7 @@
             v-if="!isContentsValid"
             class="validation-text warning isContentTooLong"
           >
-            Contents length must be less than 250
+            Contents length must be less than 200
           </p>
         </div>
         <button type="submit" class="btn">Create</button>
