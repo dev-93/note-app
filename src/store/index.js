@@ -29,13 +29,12 @@ const store = createStore({
     },
   },
   actions: {
-    async LOGIN({ commit, userData }) {
+    async LOGIN({ commit }, userData) {
       const { data } = await loginUser(userData);
       commit("setToken", data.token);
       commit("setUsername", data.user.username);
       saveAuthToCookie(data.token);
       saveUserToCookie(data.user.username);
-
       return data;
     },
   },
