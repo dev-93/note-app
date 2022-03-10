@@ -1,9 +1,9 @@
-import { sum } from "./math";
+import { shallowMount } from "@vue/test-utils";
+import LoginForm from "./LoginForm.vue";
 
-describe("math.js sum 함수 테스트", () => {
-  test("10 + 20 = 30", () => {
-    const result = sum(10, 20);
-    result === 40;
-    expect(result).toBe(30);
+describe("LoginForm.vue", () => {
+  test("컴포넌트가 마운팅되면 렌더링", () => {
+    const wrapper = shallowMount(LoginForm);
+    expect(wrapper.vm.username).toBe("");
   });
 });
