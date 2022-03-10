@@ -7,7 +7,7 @@
       {{ postItem.contents }}
     </div>
     <div class="post-item">
-      {{ postDate }}
+      {{ $filters.formatDate(postItem.createdAt) }}
       <i class="icon ion-md-create" @click="routeEditPage"></i>
       <i class="icon ion-md-trash" @click="deleteItem"></i>
     </div>
@@ -22,11 +22,6 @@ export default {
     postItem: {
       type: Object,
       required: true,
-    },
-  },
-  computed: {
-    postDate() {
-      return new Date(this.postItem.createdAt);
     },
   },
   methods: {
