@@ -27,6 +27,9 @@ const store = createStore({
     setToken(state, token) {
       state.token = token;
     },
+    clearToken(state) {
+      state.token = "";
+    },
   },
   actions: {
     async LOGIN({ commit }, userData) {
