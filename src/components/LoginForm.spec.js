@@ -2,16 +2,15 @@ import { shallowMount } from "@vue/test-utils";
 import LoginForm from "./LoginForm.vue";
 
 describe("LoginForm.vue", () => {
-  test("컴포넌트가 마운팅되면 렌더링", () => {
+  test("ID가 이메일 형식이 아니면 경고 메시지가 출력된다", () => {
     const wrapper = shallowMount(LoginForm, {
       data() {
         return {
-          username: "test@abc.com",
+          username: "test",
         };
       },
     });
-    const idInput = wrapper.find("#username");
-    console.log("인풋의 값", idInput.element.value);
-    console.log(wrapper.vm.isUsernameValid);
+    const warningText = wrapper.find(".warning");
+    expect(warningText.exists()).toBeTruthy();
   });
 });
