@@ -1,29 +1,14 @@
 # vue-til
 
-## Project setup
-```
-yarn install
-```
+## 기술 스택
+- Vue.js 2.6.10
+- Vue Router 4.0.13
+- Vuex 4.0.2
+- Axios
+- Vue Test Utils
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Run your unit tests
-```
-yarn test:unit
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
+## 강의 정리
+[바로가기](https://taenam.notion.site/vue-til-blog-de08ddb8e61b41849c53d9a2946fb58a)
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
