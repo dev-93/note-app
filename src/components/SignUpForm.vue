@@ -5,6 +5,11 @@
         <div>
           <label for="username">id: </label>
           <input id="username" type="text" v-model="username" />
+          <p class="validation-text">
+            <span class="warning" v-if="!isUsernameValid && username">
+              Please enter an email address
+            </span>
+          </p>
         </div>
         <div>
           <label for="password">pw: </label>
@@ -14,7 +19,14 @@
           <label for="nickname">nickname: </label>
           <input id="nickname" type="text" v-model="nickname" />
         </div>
-        <button type="submit" class="btn">회원 가입</button>
+        <button
+          :disabled="!isUsernameValid || !password"
+          type="submit"
+          class="btn"
+          :class="!isUsernameValid || !password ? 'disabled' : null"
+        >
+          회원 가입
+        </button>
       </form>
       <p class="log">{{ logMessage }}</p>
     </div>
@@ -23,6 +35,8 @@
 
 <script>
 import { registerUser } from "@/api/auth";
+import { validateEmail } from "@/utils/validation";
+
 export default {
   data() {
     return {
@@ -34,22 +48,52 @@ export default {
       logMessage: "",
     };
   },
+  computed: {
+    isUsernameValid() {
+      return validateEmail(this.username);
+    },
+  },
   methods: {
     async submitForm() {
+      if (!this.username) {
+        this.logMessage = `id를 입력해주세요`;
+        return;
+      }
+      if (!this.password) {
+        this.logMessage = `pw를 입력해주세요`;
+        return;
+      }
+      if (!this.nickname) {
+        this.logMessage = `nickname을 입력해주세요`;
+        return;
+      }
+
+      if (!this.isUsernameValid) {
+        this.logMessage = `id는 이메일 형식에 맞춰주세요`;
+        return;
+      }
+
       const userData = {
         username: this.username,
         password: this.password,
         nickname: this.nickname,
       };
-      const { data } = await registerUser(userData);
-      console.log(data.username);
-      this.logMessage = `${data.username} 님이 가입되었습니다`;
-      this.initForm();
+      try {
+        const { data } = await registerUser(userData);
+        this.logMessage = `${data.username} 님이 가입되었습니다`;
+        this.$router.push("/login");
+        this.initForm();
+      } catch (error) {
+        if (error.response.status) {
+          this.logMessage = `${this.username}은 이미 있는 아이디입니다.`;
+        }
+      }
     },
     initForm() {
       this.username = "";
       this.password = "";
       this.nickname = "";
+      this.logMessage = "";
     },
   },
 };

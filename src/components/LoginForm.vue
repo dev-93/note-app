@@ -19,6 +19,7 @@
           :disabled="!isUsernameValid || !password"
           type="submit"
           class="btn"
+          :class="!isUsernameValid || !password ? 'disabled' : null"
         >
           로그인
         </button>
@@ -54,11 +55,10 @@ export default {
 
         await this.$store.dispatch("LOGIN", userData);
         this.$router.push("/main");
+        this.initForm();
       } catch (error) {
         console.log(error.response.data);
         this.logMessage = error.response.data;
-      } finally {
-        this.initForm();
       }
     },
     initForm() {

@@ -44,8 +44,9 @@ router.beforeEach((to, from, next) => {
   if (to.meta.auth && !store.getters.isLogin) {
     alert("인증이 필요합니다");
     next("/login");
+  } else {
+    next();
   }
-  next();
 });
 
 export default router;
