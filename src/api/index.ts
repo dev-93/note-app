@@ -9,7 +9,7 @@ function createInstance() {
 
 function createInstanceWithAuth(url: string) {
   const instance: AxiosInstance = axios.create({
-    baseURL: `${process.env.VUE_APP_API_URL}${url}`,
+    baseURL: `${process.env.VUE_APP_API_URL}/${url}`,
   });
 
   return setInterceptors(instance);
