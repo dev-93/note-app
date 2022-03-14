@@ -1,10 +1,16 @@
 import { instance } from "./index";
 
-function registerUser(userData) {
+export interface IUserData {
+  username: string;
+  password: string;
+  nickname?: string;
+}
+
+function registerUser(userData: IUserData) {
   return instance.post("signup", userData);
 }
 
-function loginUser(userData) {
+function loginUser(userData: IUserData) {
   return instance.post("login", userData);
 }
 

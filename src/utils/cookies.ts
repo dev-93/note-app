@@ -1,8 +1,8 @@
-function saveAuthToCookie(value) {
+function saveAuthToCookie(value: string) {
   document.cookie = `til_auth=${value}`;
 }
 
-function saveUserToCookie(value) {
+function saveUserToCookie(value: string) {
   document.cookie = `til_user=${value}`;
 }
 
@@ -20,7 +20,7 @@ function getUserFromCookie() {
   );
 }
 
-function deleteCookie(value) {
+function deleteCookie(value: string) {
   document.cookie = `${value}=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
 }
 

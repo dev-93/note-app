@@ -1,8 +1,9 @@
 import store from "@/store/index";
+import { AxiosInstance, AxiosRequestConfig } from "axios";
 
-export function setInterceptors(instance) {
+export function setInterceptors(instance: AxiosInstance) {
   instance.interceptors.request.use(
-    function (config) {
+    function (config: any) {
       config.headers.Authorization = store.state.token;
       return config;
     },

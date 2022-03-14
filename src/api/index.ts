@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 import { setInterceptors } from "./common/interceptors";
 
 function createInstance() {
@@ -7,8 +7,8 @@ function createInstance() {
   });
 }
 
-function createInstanceWithAuth(url) {
-  const instance = axios.create({
+function createInstanceWithAuth(url: string) {
+  const instance: AxiosInstance = axios.create({
     baseURL: `${process.env.VUE_APP_API_URL}${url}`,
   });
 
