@@ -10,6 +10,7 @@ module.exports = {
     "plugin:vue/vue3-essential",
     "eslint:recommended",
     "plugin:prettier/recommended",
+    "@vue/typescript",
   ],
 
   parserOptions: {
@@ -44,12 +45,5 @@ module.exports = {
         jest: true,
       },
     },
-  ],
-
-  extends: [
-    "plugin:vue/vue3-essential",
-    "eslint:recommended",
-    "plugin:prettier/recommended",
-    "@vue/typescript",
   ],
 };
