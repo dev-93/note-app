@@ -26,7 +26,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { fetchPost, editPost } from "@/api/posts";
 
 export default {

@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import PostAddForm from "@/components/posts/PostAddForm.vue";
 export default {
   components: {

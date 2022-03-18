@@ -20,7 +20,7 @@
   </header>
 </template>
 
-<script>
+<script lang="ts">
 import { deleteCookie } from "@/utils/cookies";
 
 export default {

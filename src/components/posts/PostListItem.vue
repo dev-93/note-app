@@ -14,7 +14,7 @@
   </li>
 </template>
 
-<script>
+<script lang="ts">
 import { deletePost } from "@/api/posts";
 
 export default {

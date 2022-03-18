@@ -33,7 +33,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { registerUser } from "@/api/auth";
 import { validateEmail } from "@/utils/validation";
 
@@ -83,8 +83,8 @@ export default {
         this.logMessage = `${data.username} 님이 가입되었습니다`;
         this.$router.push("/login");
         this.initForm();
-      } catch (error) {
-        if (error.response.status) {
+      } catch (error: any) {
+        if (error.response?.status) {
           this.logMessage = `${this.username}은 이미 있는 아이디입니다.`;
         }
       }

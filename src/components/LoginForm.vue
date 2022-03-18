@@ -29,7 +29,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { validateEmail } from "@/utils/validation";
 
 export default {
@@ -56,7 +56,7 @@ export default {
         await this.$store.dispatch("LOGIN", userData);
         this.$router.push("/main");
         this.initForm();
-      } catch (error) {
+      } catch (error: any) {
         console.log(error.response.data);
         this.logMessage = error.response.data;
       }

@@ -26,7 +26,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { createPost } from "@/api/posts";
 export default {
   data() {
@@ -58,7 +58,7 @@ export default {
         });
 
         this.$router.push("/main");
-      } catch (error) {
+      } catch (error: any) {
         console.log(error.response.data.message);
         this.logMessage = error.response.data.message;
       }
