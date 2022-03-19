@@ -2,6 +2,7 @@
 
 ## 기술 스택
 - Vue.js 2.6.10
+- Typescript
 - Vue Router 4.0.13
 - Vuex 4.0.2
 - Axios
