@@ -17,7 +17,8 @@
             Contents length must be less than 200
           </p>
         </div>
-        <button type="submit" class="btn">Edit</button>
+        <button @click="backToList()" class="back btn">Back</button>
+        <button type="submit" class="edit btn">Edit</button>
       </form>
       <p class="log">
         {{ logMessage }}
@@ -56,6 +57,9 @@ export default {
         this.logMessage = error;
       }
     },
+    backToList() {
+      this.$router.go(-1);
+    },
   },
   async created() {
     const id = this.$route.params.id;
@@ -70,7 +74,14 @@ export default {
 .form-wrapper .form {
   width: 100%;
 }
-.btn {
+
+.edit {
   color: white;
+}
+
+.back {
+  color: black;
+  background: rgba(0, 0, 0, 0.2);
+  margin-right: 10px;
 }
 </style>
