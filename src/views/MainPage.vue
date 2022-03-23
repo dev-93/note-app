@@ -2,6 +2,16 @@
   <div>
     <div class="main list-container contents">
       <h1 class="page-header">Today I Learned</h1>
+      <div class="search-box">
+        <input
+          v-model="search"
+          placeholder="please serach title"
+          ref="answer"
+          v-on:keydown.enter.prevent="getListByTitle"
+        />
+        <p>메시지: {{ search }}</p>
+      </div>
+
       <LoadingSpinner v-if="isLoading" />
       <ul v-else>
         <PostListItem
@@ -32,6 +42,7 @@ export default {
     return {
       postItems: [],
       isLoading: false,
+      search: "",
     };
   },
   methods: {
@@ -42,11 +53,30 @@ export default {
       this.isLoading = false;
       this.postItems = data.posts;
     },
+    getListByTitle() {
+      return this.fetchData();
+    },
   },
   created() {
     this.fetchData();
   },
+  mounted() {
+    this.$refs.answer.focus();
+  },
 };
 </script>
 
-<style></style>
+<style>
+input {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.search-box {
+  width: calc(100% - 10px);
+  background: white;
+  margin: 0 auto;
+  padding: 40px;
+}
+</style>
