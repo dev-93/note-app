@@ -70,6 +70,7 @@ input {
   border: 1px solid gray;
   border-radius: 5px;
   padding: 10px;
+  width: 100%;
 }
 
 .search-box {
