@@ -7,14 +7,14 @@
           v-model="search"
           placeholder="please serach title"
           ref="answer"
-          v-on:keydown.enter.prevent="getListByTitle"
         />
       </div>
 
       <LoadingSpinner v-if="isLoading" />
+
       <ul v-else>
         <PostListItem
-          v-for="postItem in postItems"
+          v-for="postItem in getListByTitle"
           :key="postItem._id"
           :postItem="postItem"
           @refresh="fetchData"
@@ -44,6 +44,13 @@ export default {
       search: "",
     };
   },
+  computed: {
+    getListByTitle() {
+      return this.postItems.filter((post: any) => {
+        return post.title.toLowerCase().includes(this.search.toLowerCase());
+      });
+    },
+  },
   methods: {
     async fetchData() {
       this.isLoading = true;
@@ -51,9 +58,6 @@ export default {
 
       this.isLoading = false;
       this.postItems = data.posts;
-    },
-    getListByTitle() {
-      return this.fetchData();
     },
   },
   created() {
