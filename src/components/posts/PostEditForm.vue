@@ -17,9 +17,10 @@
             Contents length must be less than 200
           </p>
         </div>
-        <button @click="backToList()" class="back btn">Back</button>
+        <button @click.self.prevent="backToList" class="back btn">Back</button>
         <button type="submit" class="edit btn">Edit</button>
       </form>
+
       <p class="log">
         {{ logMessage }}
       </p>
