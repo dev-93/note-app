@@ -9,7 +9,6 @@
           ref="answer"
           v-on:keydown.enter.prevent="getListByTitle"
         />
-        <p>메시지: {{ search }}</p>
       </div>
 
       <LoadingSpinner v-if="isLoading" />
