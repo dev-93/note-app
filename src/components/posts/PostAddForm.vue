@@ -17,6 +17,7 @@
             Contents length must be less than 200
           </p>
         </div>
+        <button @click.self.prevent="backToList" class="back btn">Back</button>
         <button type="submit" class="btn">Create</button>
       </form>
       <p class="log">
@@ -63,6 +64,9 @@ export default {
         this.logMessage = error.response.data.message;
       }
     },
+    backToList() {
+      this.$router.go(-1);
+    },
   },
 };
 </script>
@@ -73,5 +77,11 @@ export default {
 }
 .btn {
   color: white;
+}
+
+.back {
+  color: black;
+  background: rgba(0, 0, 0, 0.2);
+  margin-right: 10px;
 }
 </style>
