@@ -13,7 +13,10 @@
       <LoadingSpinner v-if="isLoading" />
 
       <ul v-else>
+        <div v-if="isEmpty" class="empty-box">찾는 내용이 없습니다</div>
+
         <PostListItem
+          v-else
           v-for="postItem in getListByTitle"
           :key="postItem._id"
           :postItem="postItem"
@@ -42,6 +45,7 @@ export default {
       postItems: [],
       isLoading: false,
       search: "",
+      isEmpty: false,
     };
   },
   computed: {
@@ -49,6 +53,13 @@ export default {
       return this.postItems.filter((post: any) => {
         return post.title.toLowerCase().includes(this.search.toLowerCase());
       });
+    },
+  },
+  watch: {
+    getListByTitle: {
+      handler: function (newVal: any) {
+        this.isEmpty = newVal.length ? false : true;
+      },
     },
   },
   methods: {
@@ -82,5 +93,10 @@ input {
   background: white;
   margin: 0 auto;
   padding: 40px;
+}
+
+.empty-box {
+  margin: 100px auto;
+  color: red;
 }
 </style>
