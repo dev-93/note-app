@@ -2,6 +2,7 @@
   <div>
     <div class="main list-container contents">
       <h1 class="page-header">Today I Learned</h1>
+      <HellowWorld />
       <div class="search-box">
         <input
           v-model="search"
@@ -34,11 +35,13 @@
 import { fetchPosts } from "@/api/posts";
 import PostListItem from "@/components/posts/PostListItem.vue";
 import LoadingSpinner from "@/components/common/LoadingSpinner.vue";
+import HellowWorld from "@/components/HelloWorld.vue";
 
 export default {
   components: {
     PostListItem,
     LoadingSpinner,
+    HellowWorld,
   },
   data() {
     return {
