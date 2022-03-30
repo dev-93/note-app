@@ -20,7 +20,7 @@
 - cookie를 이용한 로그인 인증 값 저장
 
 ## 기능
-- title로 게시글 
+- title로 게시글 필터처리
 
 ## 배운 것 정리
 - [바로가기](https://taenam.notion.site/vue-til-blog-de08ddb8e61b41849c53d9a2946fb58a)
