@@ -13,7 +13,7 @@
 
       <LoadingSpinner v-if="isLoading" />
 
-      <ul v-else>
+      <ul v-else class="list_box">
         <div v-if="isEmpty" class="empty-box">찾는 내용이 없습니다</div>
 
         <PostListItem

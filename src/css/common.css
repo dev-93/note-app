@@ -123,11 +123,11 @@ a:hover {
 .list-container.sticky {
 	margin-top: 76px;
 }
-.list-container > ul {
+.list-container > .list_box {
 	display: flex;
 	flex-wrap: wrap;
 }
-.list-container > ul > li {
+.list-container > .list_box > li {
 	position: relative;
 	flex-grow: 1;
 	width: 320px;
