@@ -1,6 +1,8 @@
 <template>
   <div class="hello">
     <h1>{{ message }}</h1>
+    <button @click="reverseMessage">Reverse Message</button>
+    <button @click="message += '!'">Append "!"</button>
   </div>
 </template>
 
@@ -10,6 +12,14 @@ export default {
     return {
       message: "hello world",
     };
+  },
+  methods: {
+    reverseMessage() {
+      this.message = this.message.split("").reverse().join("");
+    },
+    notify() {
+      alert("navigation was prevented.");
+    },
   },
 };
 </script>
