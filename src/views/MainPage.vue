@@ -5,6 +5,7 @@
       <HellowWorld />
       <div class="search-box">
         <input
+          class="search_input"
           v-model="search"
           placeholder="please serach title"
           ref="answer"
@@ -84,7 +85,7 @@ export default {
 </script>
 
 <style>
-input {
+.search_input {
   border: 1px solid gray;
   border-radius: 5px;
   padding: 10px;
