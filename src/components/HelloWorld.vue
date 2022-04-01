@@ -1,36 +1,61 @@
 <template>
-  <button @click="show = !show">Toggle List</button>
-  <button @click="addItem()">Push Number</button>
-  <button @click="list.pop()">Pop Number</button>
-  <button @click="list.reverse()">Reverse List</button>
+  <h2>Text Input</h2>
+  <input v-model="text" /> {{ text }}
 
-  <ul v-if="show && list.length">
-    <li v-for="item of list" v-bind:key="item">{{ item }}</li>
-  </ul>
-  <p v-else-if="list.length">List is not empty, but hidden.</p>
-  <p v-else>List is empty.</p>
+  <h2>Checkbox</h2>
+  <input type="checkbox" id="checkbox" v-model="checked" />
+  <label for="checkbox">Checked: {{ checked }}</label>
+
+  <h2>Multi Checkbox</h2>
+  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames" />
+  <label for="jack">Jack</label>
+  <input type="checkbox" id="john" value="John" v-model="checkedNames" />
+  <label for="john">John</label>
+  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames" />
+  <label for="mike">Mike</label>
+  <p>
+    Checked names: {{ checkedNames.length > 0 ? checkedNames : "hello world" }}
+  </p>
+
+  <h2>Radio</h2>
+  <input type="radio" id="one" value="One" v-model="picked" />
+  <label for="one">One</label>
+  <br />
+  <input type="radio" id="two" value="Two" v-model="picked" />
+  <label for="two">Two</label>
+  <br />
+  <span>Picked: {{ picked }}</span>
+
+  <h2>Select</h2>
+  <select v-model="selected">
+    <option disabled value="">Please select one</option>
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+  <span>Selected: {{ selected }}</span>
 </template>
 
 <script lang="ts">
 export default {
   data() {
     return {
-      show: true,
-      list: [1, 2, 3],
+      text: "",
+      checked: true,
+      checkedNames: ["Jack"],
+      picked: "One",
+      selected: "A",
+      multiSelected: ["A"],
     };
-  },
-  methods: {
-    addItem(): void {
-      const maxNum: number = Math.max(...this.list);
-      this.list.push(maxNum + 1);
-    },
   },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-ul li {
-  list-style: initial;
+input#checkbox {
+  display: inline;
+  width: initial;
+  background-color: red;
 }
 </style>
