@@ -4,7 +4,7 @@
       {{ postItem.title }}
     </div>
     <div class="post-contents">
-      {{ postItem.contents }}
+      <span v-html="postItem.contents"></span>
     </div>
     <div class="post-item">
       {{ $filters.formatDate(postItem.createdAt) }}
