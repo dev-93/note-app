@@ -2,12 +2,13 @@
   <div>
     <div class="main list-container contents">
       <h1 class="page-header">Today I Learned</h1>
-      <HellowWorld />
+      <FirstUserMsg />
+
       <div class="search-box">
         <input
           class="search_input"
-          v-model="search"
-          placeholder="please serach title"
+          v-model.trim="search"
+          placeholder="please search title"
           ref="answer"
         />
       </div>
@@ -36,13 +37,13 @@
 import { fetchPosts } from "@/api/posts";
 import PostListItem from "@/components/posts/PostListItem.vue";
 import LoadingSpinner from "@/components/common/LoadingSpinner.vue";
-import HellowWorld from "@/components/HelloWorld.vue";
+import FirstUserMsg from "@/components/FirstUserMsg.vue";
 
 export default {
   components: {
     PostListItem,
     LoadingSpinner,
-    HellowWorld,
+    FirstUserMsg,
   },
   data() {
     return {
