@@ -41,12 +41,12 @@ export default {
     };
   },
   computed: {
-    isUsernameValid() {
+    isUsernameValid(): Boolean {
       return validateEmail(this.username);
     },
   },
   methods: {
-    async submitForm() {
+    async submitForm(): Promise<void> {
       try {
         const userData = {
           username: this.username,
@@ -61,7 +61,7 @@ export default {
         this.logMessage = error.response.data;
       }
     },
-    initForm() {
+    initForm(): void {
       this.username = "";
       this.password = "";
     },
