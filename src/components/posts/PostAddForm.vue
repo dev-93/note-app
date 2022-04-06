@@ -1,6 +1,16 @@
 <template>
   <div class="contents">
     <h1 class="page-header">Create Post</h1>
+    <div v-if="editor">
+      <editor
+        ref="toastuiEditor"
+        :initialValue="editorText"
+        :options="editorOptions"
+        height="500px"
+        initialEditType="wysiwyg"
+        previewStyle="vertical"
+      />
+    </div>
     <div class="form-wrapper">
       <form class="form" @submit.prevent="submitForm">
         <div>
@@ -29,12 +39,23 @@
 
 <script lang="ts">
 import { createPost } from "@/api/posts";
+import "@toast-ui/editor/dist/toastui-editor.css";
+import { Editor } from "@toast-ui/vue-editor";
+
 export default {
+  cocomponents: {
+    editor: Editor,
+  },
   data() {
     return {
       title: "",
       contents: "",
       logMessage: "",
+      editor: "",
+      editorText: "This is initialValue.",
+      editorOptions: {
+        hideModeSwitch: true,
+      },
     };
   },
   computed: {
@@ -42,7 +63,13 @@ export default {
       return this.contents.length <= 200;
     },
   },
+  mounted() {
+    this.getEditor();
+  },
   methods: {
+    getEditor() {
+      this.editor = Editor;
+    },
     async submitForm() {
       if (!this.title) {
         this.logMessage = "title을 입력해주세요";
