@@ -96,6 +96,9 @@ a:hover {
 .form div:nth-last-child(2) {
   margin-bottom: 0.5rem;
 }
+.bt-box {
+	margin-top: 20px;
+}
 .btn {
   background: #FE9616;
   padding: 0.5rem 1.5rem;
