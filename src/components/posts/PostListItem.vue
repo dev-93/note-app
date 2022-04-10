@@ -1,16 +1,18 @@
 <template>
   <li>
-    <div class="post-title">
-      {{ postItem.title }}
-    </div>
-    <div class="post-contents">
-      <span v-html="postItem.contents"></span>
-    </div>
-    <div class="post-item">
-      {{ $filters.formatDate(postItem.createdAt) }}
-      <i class="icon ion-md-create" @click="routeEditPage"></i>
-      <i class="icon ion-md-trash" @click="deleteItem"></i>
-    </div>
+    <a :href="href" @click="routeEditPage">
+      <div class="post-title">
+        {{ postItem.title }}
+      </div>
+      <div class="post-contents">
+        <span v-html="postItem.contents"></span>
+      </div>
+      <div class="post-item">
+        {{ $filters.formatDate(postItem.createdAt) }}
+        <i class="icon ion-md-create" @click="routeEditPage"></i>
+        <i class="icon ion-md-trash" @click="deleteItem"></i>
+      </div>
+    </a>
   </li>
 </template>
 
@@ -38,4 +40,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+a {
+  cursor: pointer;
+}
+a:hover {
+  color: inherit;
+}
+</style>
