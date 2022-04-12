@@ -1,7 +1,6 @@
 <template>
   <div class="contents">
-    <h1 class="page-header">Create Post</h1>
-    <div v-if="editor"></div>
+    <h1 class="page-header">Post 작성하기</h1>
     <div class="form-wrapper">
       <form class="form" @submit.prevent="submitForm">
         <div>
@@ -10,7 +9,8 @@
         </div>
         <div>
           <label for="contents">Contents:</label>
-          <textarea id="contents" type="text" rows="5" v-model="contents" />
+
+          <EditorForm @setContents="setContents" />
           <p
             v-if="!isContentsValid"
             class="validation-text warning isContentTooLong"
@@ -18,8 +18,12 @@
             Contents length must be less than 200
           </p>
         </div>
-        <button @click.self.prevent="backToList" class="back btn">Back</button>
-        <button type="submit" class="btn">Create</button>
+        <div class="bt-box">
+          <button @click.self.prevent="backToList" class="back btn">
+            Back
+          </button>
+          <button type="submit" class="btn">Create</button>
+        </div>
       </form>
       <p class="log">
         {{ logMessage }}
@@ -30,19 +34,18 @@
 
 <script lang="ts">
 import { createPost } from "@/api/posts";
-import "@toast-ui/editor/dist/toastui-editor.css";
+import EditorForm from "../common/EditorForm.vue";
 
 export default {
+  components: {
+    EditorForm,
+  },
   data() {
     return {
       title: "",
-      contents: "",
+      contents: "qew",
       logMessage: "",
-      editor: "",
-      editorText: "This is initialValue.",
-      editorOptions: {
-        hideModeSwitch: true,
-      },
+      value: "",
     };
   },
   computed: {
@@ -50,13 +53,7 @@ export default {
       return this.contents.length <= 200;
     },
   },
-  mounted() {
-    this.getEditor();
-  },
   methods: {
-    getEditor() {
-      this.editor = Editor;
-    },
     async submitForm() {
       if (!this.title) {
         this.logMessage = "title을 입력해주세요";
@@ -80,6 +77,10 @@ export default {
     },
     backToList() {
       this.$router.go(-1);
+    },
+    setContents(value: string) {
+      this.contents = value;
+      console.log(value, 100);
     },
   },
 };

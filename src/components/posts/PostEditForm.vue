@@ -10,6 +10,12 @@
         <div>
           <label for="contents">Contents:</label>
           <textarea id="contents" type="text" rows="5" v-model="contents" />
+          <QuillEditor
+            :modules="modules"
+            toolbar="full"
+            v-model:content="contents"
+            contentType="html"
+          />
           <p
             v-if="!isContentsValid"
             class="validation-text warning isContentTooLong"
@@ -30,8 +36,28 @@
 
 <script lang="ts">
 import { fetchPost, editPost } from "@/api/posts";
+import { QuillEditor } from "@vueup/vue-quill";
+import BlotFormatter from "quill-blot-formatter";
+import "@vueup/vue-quill/dist/vue-quill.snow.css";
 
 export default {
+  components: {
+    QuillEditor,
+  },
+  setup: () => {
+    const modules = {
+      name: "blotFormatter",
+      module: BlotFormatter,
+      options: {
+        modules: {
+          toolbar: ["bold", "italic", "underline"],
+        },
+        placeholder: "입력해주세요",
+        theme: "snow",
+      },
+    };
+    return { modules };
+  },
   data() {
     return {
       title: "",
