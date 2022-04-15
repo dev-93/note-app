@@ -53,6 +53,10 @@ export default {
       return this.contents.length <= 200;
     },
   },
+  unmounted() {
+    this.title = "";
+    this.contents = "";
+  },
   methods: {
     async submitForm() {
       if (!this.title) {
