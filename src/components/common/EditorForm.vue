@@ -22,12 +22,6 @@ export default {
       required: false,
     },
   },
-  computed: {
-    isContentsValid() {
-      console.log(this.$store.state.postContents);
-      return 1;
-    },
-  },
   setup: () => {
     const modules = {
       name: "blotFormatter",
