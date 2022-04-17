@@ -9,24 +9,16 @@
         </div>
         <div>
           <label for="contents">Contents:</label>
-          <textarea id="contents" type="text" rows="5" v-model="contents" />
-          <QuillEditor
-            :modules="modules"
-            toolbar="full"
-            v-model:content="contents"
-            contentType="html"
-          />
-          <p
-            v-if="!isContentsValid"
-            class="validation-text warning isContentTooLong"
-          >
-            Contents length must be less than 200
-          </p>
-        </div>
-        <button @click.self.prevent="backToList" class="back btn">Back</button>
-        <button type="submit" class="edit btn">Edit</button>
-      </form>
 
+          <EditorForm v-if="isDataGet" />
+        </div>
+        <div class="bt-box">
+          <button @click.self.prevent="backToList" class="back btn">
+            Back
+          </button>
+          <button type="submit" class="edit btn">Edit</button>
+        </div>
+      </form>
       <p class="log">
         {{ logMessage }}
       </p>
@@ -36,39 +28,18 @@
 
 <script lang="ts">
 import { fetchPost, editPost } from "@/api/posts";
-import { QuillEditor } from "@vueup/vue-quill";
-import BlotFormatter from "quill-blot-formatter";
-import "@vueup/vue-quill/dist/vue-quill.snow.css";
+import EditorForm from "../common/EditorForm.vue";
 
 export default {
   components: {
-    QuillEditor,
-  },
-  setup: () => {
-    const modules = {
-      name: "blotFormatter",
-      module: BlotFormatter,
-      options: {
-        modules: {
-          toolbar: ["bold", "italic", "underline"],
-        },
-        placeholder: "입력해주세요",
-        theme: "snow",
-      },
-    };
-    return { modules };
+    EditorForm,
   },
   data() {
     return {
       title: "",
-      contents: "",
       logMessage: "",
+      isDataGet: false,
     };
-  },
-  computed: {
-    isContentsValid() {
-      return this.contents.length <= 200;
-    },
   },
   methods: {
     async submitForm() {
@@ -76,7 +47,7 @@ export default {
       try {
         await editPost(id, {
           title: this.title,
-          contents: this.contents,
+          contents: this.$store.state.postContents,
         });
         this.$router.push("/main");
       } catch (error) {
@@ -88,11 +59,18 @@ export default {
       this.$router.go(-1);
     },
   },
-  async created() {
+  unmounted() {
+    this.title = "";
+    this.$store.state.postContents = "";
+  },
+  async beforeMount() {
     const id = this.$route.params.id;
     const { data } = await fetchPost(id);
+
     this.title = data.title;
-    this.contents = data.contents;
+    this.$store.state.postContents = data.contents;
+    await this.$nextTick();
+    this.isDataGet = true;
   },
 };
 </script>
