@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { validateEmail } from "@/utils/validation";
+import validateEmail from "@/utils/validation";
 
 export default {
   data() {
@@ -53,7 +53,8 @@ export default {
           password: this.password,
         };
 
-        await this.$store.dispatch("LOGIN", userData);
+        const a = await this.$store.dispatch("LOGIN", userData);
+        console.log(a);
         this.$router.push("/main");
         this.initForm();
       } catch (error: any) {
