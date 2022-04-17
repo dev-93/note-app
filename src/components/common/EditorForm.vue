@@ -16,12 +16,6 @@ export default {
   components: {
     QuillEditor,
   },
-  props: {
-    contents: {
-      type: String,
-      required: false,
-    },
-  },
   setup: () => {
     const modules = {
       name: "blotFormatter",
