@@ -3,12 +3,8 @@
     :modules="modules"
     toolbar="full"
     contentType="html"
-    v-model:content="content"
-    v-on:change="$event => $emit('setContents', $event)"
+    v-model:content="this.$store.state.postContents"
   />
-  <div>
-    <button>test</button>
-  </div>
 </template>
 
 <script lang="ts">
@@ -26,11 +22,12 @@ export default {
       required: false,
     },
   },
-  // computed: {
-  //   onEmit() {
-  //     return this.$emit("setContents", this.content);
-  //   },
-  // },
+  computed: {
+    isContentsValid() {
+      console.log(this.$store.state.postContents);
+      return 1;
+    },
+  },
   setup: () => {
     const modules = {
       name: "blotFormatter",
@@ -39,17 +36,10 @@ export default {
         modules: {
           toolbar: ["bold", "italic", "underline"],
         },
-        placeholder: "입력해주세요",
-        theme: "snow",
       },
     };
     return { modules };
   },
-  // methods: {
-  //   onEmit() {
-  //     this.$emit("setContents", this.content);
-  //   },
-  // },
 };
 </script>
 

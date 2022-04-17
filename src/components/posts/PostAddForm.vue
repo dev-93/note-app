@@ -10,13 +10,7 @@
         <div>
           <label for="contents">Contents:</label>
 
-          <EditorForm @setContents="setContents" />
-          <p
-            v-if="!isContentsValid"
-            class="validation-text warning isContentTooLong"
-          >
-            Contents length must be less than 200
-          </p>
+          <EditorForm />
         </div>
         <div class="bt-box">
           <button @click.self.prevent="backToList" class="back btn">
@@ -43,26 +37,28 @@ export default {
   data() {
     return {
       title: "",
-      contents: "qew",
       logMessage: "",
       value: "",
     };
   },
-  computed: {
-    isContentsValid() {
-      return this.contents.length <= 200;
-    },
-  },
   unmounted() {
     this.title = "";
-    this.contents = "";
+    this.$store.state.postContents = "";
+  },
+  computed: {
+    getPostContents: function () {
+      return this.$store.state.postContents;
+    },
+    isContentsValid() {
+      return this.$store.state.postContents.length <= 200;
+    },
   },
   methods: {
     async submitForm() {
       if (!this.title) {
         this.logMessage = "title을 입력해주세요";
         return;
-      } else if (!this.contents) {
+      } else if (!this.$store.state.postContents) {
         this.logMessage = "contents를 입력해주세요";
         return;
       }
@@ -70,7 +66,7 @@ export default {
       try {
         await createPost({
           title: this.title,
-          contents: this.contents,
+          contents: this.$store.state.postContents,
         });
 
         this.$router.push("/main");
@@ -81,10 +77,6 @@ export default {
     },
     backToList() {
       this.$router.go(-1);
-    },
-    setContents(value: string) {
-      this.contents = value;
-      console.log(value, 100);
     },
   },
 };
