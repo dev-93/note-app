@@ -11,6 +11,7 @@ const store = createStore({
   state: {
     username: getUserFromCookie() || "",
     token: getAuthFromCookie() || "",
+    postContents: "",
   },
   getters: {
     isLogin(state) {
