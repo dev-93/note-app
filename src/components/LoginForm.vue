@@ -53,8 +53,7 @@ export default {
           password: this.password,
         };
 
-        const a = await this.$store.dispatch("LOGIN", userData);
-        console.log(a);
+        await this.$store.dispatch("LOGIN", userData);
         this.$router.push("/main");
         this.initForm();
       } catch (error: any) {
