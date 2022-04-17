@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="main list-container contents">
-      <h1 class="page-header">Today I Learned</h1>
+      <h1 class="page-header">기록용</h1>
       <FirstUserMsg />
 
       <div class="search-box">

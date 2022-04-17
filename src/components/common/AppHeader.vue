@@ -2,8 +2,8 @@
   <header>
     <div>
       <router-link :to="logoLink" class="logo">
-        TIL
-        <span v-if="isUserLogin">by {{ $store.state.username }}</span>
+        Hello
+        <span v-if="isUserLogin">{{ $store.state.username }}</span>
       </router-link>
     </div>
     <div class="navigations">
