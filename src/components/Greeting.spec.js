@@ -5,6 +5,6 @@ describe("Greeting.vue", () => {
   it("greeting을 렌더한다", () => {
     const wrapper = mount(Greeting);
 
-    expect(wrapper.html().includes("Taenam")).toBe(false);
+    expect(wrapper.html().includes("Taenam")).toBe(true);
   });
 });
