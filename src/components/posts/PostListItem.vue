@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     async deleteItem() {
-      if (confirm("You want to delete it?")) {
+      if (confirm("정말 삭제하겠습니까?")) {
         await deletePost(this.postItem._id);
         this.$emit("refresh");
       }
