@@ -24,7 +24,6 @@ describe("SignUpForm.vue", () => {
       },
     });
     const button = wrapper.find("button");
-    console.log(button.element.disabled);
     expect(button.element.disabled).toBeTruthy();
   });
 });
